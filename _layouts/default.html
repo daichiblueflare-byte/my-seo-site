@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ page.title }} | Work & Tech Media</title>
-    <!-- 最先端デザインフレームワーク Tailwind CSS と 活字最適化プラグインを導入 -->
+    <title>{{ page.title }} | WORK & TECH LAB</title>
     <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
     <script>
         tailwind.config = {
@@ -18,56 +17,196 @@
         }
     </script>
     <style>
-        /* 細かな表示の微調整 */
-        .prose table { width: 100%; border-collapse: collapse; margin-top: 1.5rem; margin-bottom: 1.5rem; }
-        .prose th { background-color: #1e293b; color: #f8fafc; padding: 0.75rem; text-align: left; }
+        /* Core Web Vitals & レスポンシブ改善のためのCSSハック */
+        body { background-color: #0b0f19; }
+        .prose table { display: block; width: 100%; overflow-x: auto; border-collapse: collapse; margin-top: 1.5rem; margin-bottom: 1.5rem; font-size: 0.9em; }
+        .prose th { background-color: #1e293b; color: #f8fafc; padding: 0.75rem; text-align: left; white-space: nowrap; }
         .prose td { padding: 0.75rem; border-bottom: 1px solid #334155; }
+        /* スクロールバーのカスタマイズ */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #0b0f19; }
+        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #334155; }
+        /* スクロールインジケーター */
+        #progress-bar { position: fixed; top: 0; left: 0; height: 3px; background: linear-gradient(to right, #3b82f6, #06b6d4); z-index: 100; width: 0%; transition: width 0.1s ease; }
     </style>
 </head>
-<body class="bg-[#0b0f19] text-slate-200 antialiased min-h-screen flex flex-col font-sans">
+<body class="text-slate-200 antialiased min-h-screen flex flex-col font-sans selection:bg-blue-500/30">
 
-    <!-- ヘッダー（ナビゲーションバー） -->
-    <header class="border-b border-slate-800 bg-[#0b0f19]/80 backdrop-blur sticky top-0 z-50">
-        <div class="max-w-4xl mx-auto px-6 h-16 flex items-center justify-between">
-            <a href="/my-seo-site/" class="text-lg font-bold tracking-wider bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+    <div id="progress-bar"></div>
+
+    <header class="border-b border-slate-800/80 bg-[#0b0f19]/85 backdrop-blur sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 md:px-6 h-16 flex items-center justify-between">
+            <a href="/my-seo-site/" class="text-lg font-bold tracking-wider bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent hover:opacity-80 transition">
                 WORK & TECH <span class="text-xs font-normal text-slate-500 ml-1">LAB</span>
             </a>
-            <nav class="flex space-x-6 text-sm text-slate-400">
-                <a href="/my-seo-site/" class="hover:text-slate-200 transition">Home</a>
-                <span class="text-slate-700">|</span>
-                <span class="text-xs bg-slate-800 text-slate-300 px-2.5 py-1 rounded-full border border-slate-700">AI Automated</span>
+            <nav aria-label="メインナビゲーション" class="flex space-x-6 text-sm text-slate-400">
+                <a href="/my-seo-site/" class="hover:text-slate-200 transition" aria-current="page">Home</a>
+                <span class="text-slate-700" aria-hidden="true">|</span>
+                <span class="text-xs bg-blue-500/10 text-blue-400 border border-blue-500/20 px-2.5 py-1 rounded-full font-medium">AI Automated</span>
             </nav>
         </div>
     </header>
 
-    <!-- メインコンテンツ領域 -->
-    <main class="flex-grow max-w-4xl w-full mx-auto px-6 py-12">
-        <article class="bg-[#131b2e] border border-slate-800/60 rounded-2xl p-8 md:p-12 shadow-xl shadow-black/20">
-            
-            <!-- Geminiが生成したMarkdown記事本文が、以下のタグを起点に自動で超美しく展開されます -->
-            <div class="prose prose-invert prose-slate max-w-none 
-                        prose-headings:font-bold prose-headings:tracking-tight prose-headings:text-slate-50
-                        prose-h1:text-3xl prose-h1:mb-8 prose-h1:border-b prose-h1:border-slate-800 prose-h1:pb-4
-                        prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-6 prose-h2:text-blue-400
-                        prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-4 prose-h3:text-slate-200
-                        prose-p:text-slate-300 prose-p:leading-relaxed prose-p:mb-6 prose-p:text-[16px]
-                        prose-strong:text-slate-50 prose-strong:font-semibold
-                        prose-ul:my-6 prose-ul:list-disc prose-ul:pl-6
-                        prose-li:text-slate-300 prose-li:my-2
-                        prose-code:text-cyan-300 prose-code:bg-slate-900 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-sm">
-                {{ content }}
+    <div class="flex-grow max-w-6xl w-full mx-auto px-4 md:px-6 py-8 md:py-12 lg:grid lg:grid-cols-4 lg:gap-8">
+        
+        <main class="lg:col-span-3">
+            <article class="bg-[#131b2e] border border-slate-800/50 rounded-2xl p-6 md:p-10 shadow-xl shadow-black/30">
+                
+                <header class="border-b border-slate-800 pb-6 mb-8">
+                    <h1 class="text-2xl md:text-3xl font-bold tracking-tight text-slate-50 mb-4 leading-tight">
+                        {{ page.title }}
+                    </h1>
+                    <div class="flex flex-wrap items-center gap-4 text-xs text-slate-400 font-medium">
+                        <time datetime="{{ page.date | date_to_xmlschema }}">
+                            📅 出版日: {{ page.date | date: "%Y/%m/%d" }}
+                        </time>
+                        <span class="text-slate-700">•</span>
+                        <span id="read-time">⏳ 読了時間: 計算中...</span>
+                    </div>
+                </header>
+
+                <div class="lg:hidden bg-[#0b0f19]/60 border border-slate-800 rounded-xl p-4 mb-8">
+                    <details class="group">
+                        <summary class="text-sm font-semibold text-slate-300 cursor-pointer select-none flex items-center justify-between">
+                            <span>目次（クリックで開閉）</span>
+                            <span class="transition group-open:rotate-180">▼</span>
+                        </summary>
+                        <nav id="toc-mobile" class="mt-4 text-sm space-y-2 border-t border-slate-800/50 pt-3 text-slate-400"></nav>
+                    </details>
+                </div>
+                
+                <div id="entry-content" class="prose prose-invert prose-slate max-w-none 
+                            prose-headings:font-bold prose-headings:tracking-tight prose-headings:text-slate-50
+                            prose-h2:text-xl md:prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-6 prose-h2:text-blue-400 prose-h2:border-l-4 prose-h2:border-blue-500 prose-h2:pl-3
+                            prose-h3:text-lg md:prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-4 prose-h3:text-slate-200
+                            prose-p:text-slate-300 prose-p:leading-relaxed prose-p:mb-6 prose-p:text-[16px]
+                            prose-strong:text-slate-50 prose-strong:font-semibold
+                            prose-a:text-cyan-400 prose-a:no-underline hover:prose-a:underline
+                            prose-ul:my-6 prose-ul:list-disc prose-ul:pl-6
+                            prose-blockquote:border-l-4 prose-blockquote:border-slate-700 prose-blockquote:bg-slate-900/40 prose-blockquote:py-1 prose-blockquote:px-4 prose-blockquote:rounded-r-lg prose-blockquote:text-slate-400 prose-blockquote:font-normal
+                            prose-img:rounded-xl prose-img:shadow-2xl prose-img:mx-auto prose-img:border prose-img:border-slate-800
+                            prose-pre:bg-[#070a12] prose-pre:border prose-pre:border-slate-800/80 prose-pre:rounded-xl prose-pre:p-4 prose-pre:relative">
+                    {{ content }}
+                </div>
+
+            </article>
+        </main>
+
+        <aside class="hidden lg:block lg:col-span-1">
+            <div class="sticky top-24 space-y-6">
+                <div class="bg-[#131b2e] border border-slate-800/60 rounded-xl p-5 shadow-lg shadow-black/10">
+                    <h2 class="text-xs font-bold tracking-wider text-slate-400 uppercase mb-4 flex items-center gap-2">
+                        <span class="w-1.5 h-3 bg-blue-500 rounded-full"></span> TABLE OF CONTENTS
+                    </h2>
+                    <nav id="toc-pc" class="text-xs space-y-3 max-h-[calc(100vh-200px)] overflow-y-auto text-slate-400 pr-2"></nav>
+                </div>
             </div>
+        </aside>
 
-        </article>
-    </main>
+    </div>
 
-    <!-- フッター -->
-    <footer class="border-t border-slate-900 bg-[#070a12] py-8 text-center text-xs text-slate-600">
-        <div class="max-w-4xl mx-auto px-6">
+    <footer class="border-t border-slate-900 bg-[#070a12] py-8 text-center text-xs text-slate-600 mt-auto">
+        <div class="max-w-6xl mx-auto px-6">
             <p>&copy; 2026 WORK & TECH LAB. All rights reserved.</p>
-            <p class="mt-2 text-slate-700">Optimized for Google SEO & High-Performance Workflow.</p>
+            <p class="mt-2 text-slate-700">100% Automated Media Platform powered by Gemini & n8n Architecture.</p>
         </div>
     </footer>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const content = document.getElementById('entry-content');
+            if (!content) return;
+
+            // 1. 読了時間の自動計算（項目⑨）
+            const textLength = content.innerText.replace(/\s+/g, '').length;
+            const readTime = Math.ceil(textLength / 800); // 1分800文字換算
+            document.getElementById('read-time').innerText = `⏳ 読了時間: 約${readTime}分 (${textLength}文字)`;
+
+            // 2. Core Web Vitals用の画像遅延・非同期読み込み強制化（項目⑫）
+            content.querySelectorAll('img').forEach(img => {
+                img.setAttribute('loading', 'lazy');
+                img.setAttribute('decoding', 'async');
+            });
+
+            // 3. テンプレート側でのH1自動担保＆本文重複H1の削除（項目①）
+            const firstH1 = content.querySelector('h1');
+            if (firstH1) firstH1.remove(); // 本文内の#タイトルは二重出力になるため自動消去
+
+            // 4. 高度な動的目次（TOC）の生成＆スクロール追従（項目⑧・⑬）
+            const headings = content.querySelectorAll('h2, h3');
+            const tocPc = document.getElementById('toc-pc');
+            const tocMobile = document.getElementById('toc-mobile');
+
+            if (headings.length === 0) {
+                document.querySelectorAll('aside, .lg\\:hidden').forEach(el => el.remove());
+            } else {
+                headings.forEach((heading, index) => {
+                    const id = `heading-${index}`;
+                    heading.setAttribute('id', id);
+
+                    const createAnchor = (isMobile) => {
+                        const a = document.createElement('a');
+                        a.href = `#${id}`;
+                        a.innerText = heading.innerText;
+                        a.className = `block transition-all hover:text-slate-200 ${heading.tagName === 'H3' ? 'pl-3 text-slate-500' : 'font-medium'}`;
+                        if (!isMobile) a.setAttribute('data-toc-id', id);
+                        return a;
+                    };
+
+                    tocPc.appendChild(createAnchor(false));
+                    tocMobile.appendChild(createAnchor(true));
+                });
+            }
+
+            // 5. コードブロックのコピー機能自動追加（項目⑬）
+            content.querySelectorAll('pre').forEach(pre => {
+                const button = document.createElement('button');
+                button.innerText = 'Copy';
+                button.className = 'absolute top-2 right-2 px-2.5 py-1 text-[11px] font-medium text-slate-400 bg-slate-900 border border-slate-800 rounded-md hover:text-slate-200 hover:bg-slate-800 transition shadow-sm select-none';
+                pre.appendChild(button);
+
+                button.addEventListener('click', async () => {
+                    const code = pre.querySelector('code');
+                    if (!code) return;
+                    await navigator.clipboard.writeText(code.innerText.trim());
+                    button.innerText = 'Copied!';
+                    button.classList.add('text-green-400', 'border-green-500/30');
+                    setTimeout(() => {
+                        button.innerText = 'Copy';
+                        button.classList.remove('text-green-400', 'border-green-500/30');
+                    }, 2000);
+                });
+            });
+
+            // 6. スクロール進捗バー＆目次ハイライト連動（Intersection Observer）
+            window.addEventListener('scroll', () => {
+                const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+                const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const scrolled = (winScroll / height) * 100;
+                document.getElementById('progress-bar').style.width = scrolled + '%';
+            });
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.getAttribute('id');
+                        document.querySelectorAll('#toc-pc a').forEach(a => {
+                            if (a.getAttribute('data-toc-id') === id) {
+                                a.classList.add('text-blue-400', 'pl-1', 'font-semibold');
+                                a.classList.remove('text-slate-400', 'text-slate-500');
+                            } else {
+                                a.classList.remove('text-blue-400', 'pl-1', 'font-semibold');
+                                if (a.classList.contains('font-medium')) a.classList.add('text-slate-400');
+                                else a.classList.add('text-slate-500');
+                            }
+                        });
+                    }
+                });
+            }, { rootMargin: '-10% 0px -80% 0px' });
+
+            headings.forEach(heading => observer.observe(heading));
+        });
+    </script>
 </body>
 </html>
