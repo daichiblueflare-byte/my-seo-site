@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title }} | Work & Tech Media</title>
+    <!-- 最先端デザインフレームワーク Tailwind CSS と 活字最適化プラグインを導入 -->
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Helvetica Neue', 'Arial', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Meiryo', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* 細かな表示の微調整 */
+        .prose table { width: 100%; border-collapse: collapse; margin-top: 1.5rem; margin-bottom: 1.5rem; }
+        .prose th { background-color: #1e293b; color: #f8fafc; padding: 0.75rem; text-align: left; }
+        .prose td { padding: 0.75rem; border-bottom: 1px solid #334155; }
+    </style>
+</head>
+<body class="bg-[#0b0f19] text-slate-200 antialiased min-h-screen flex flex-col font-sans">
+
+    <!-- ヘッダー（ナビゲーションバー） -->
+    <header class="border-b border-slate-800 bg-[#0b0f19]/80 backdrop-blur sticky top-0 z-50">
+        <div class="max-w-4xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="/my-seo-site/" class="text-lg font-bold tracking-wider bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+                WORK & TECH <span class="text-xs font-normal text-slate-500 ml-1">LAB</span>
+            </a>
+            <nav class="flex space-x-6 text-sm text-slate-400">
+                <a href="/my-seo-site/" class="hover:text-slate-200 transition">Home</a>
+                <span class="text-slate-700">|</span>
+                <span class="text-xs bg-slate-800 text-slate-300 px-2.5 py-1 rounded-full border border-slate-700">AI Automated</span>
+            </nav>
+        </div>
+    </header>
+
+    <!-- メインコンテンツ領域 -->
+    <main class="flex-grow max-w-4xl w-full mx-auto px-6 py-12">
+        <article class="bg-[#131b2e] border border-slate-800/60 rounded-2xl p-8 md:p-12 shadow-xl shadow-black/20">
+            
+            <!-- Geminiが生成したMarkdown記事本文が、以下のタグを起点に自動で超美しく展開されます -->
+            <div class="prose prose-invert prose-slate max-w-none 
+                        prose-headings:font-bold prose-headings:tracking-tight prose-headings:text-slate-50
+                        prose-h1:text-3xl prose-h1:mb-8 prose-h1:border-b prose-h1:border-slate-800 prose-h1:pb-4
+                        prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-6 prose-h2:text-blue-400
+                        prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-4 prose-h3:text-slate-200
+                        prose-p:text-slate-300 prose-p:leading-relaxed prose-p:mb-6 prose-p:text-[16px]
+                        prose-strong:text-slate-50 prose-strong:font-semibold
+                        prose-ul:my-6 prose-ul:list-disc prose-ul:pl-6
+                        prose-li:text-slate-300 prose-li:my-2
+                        prose-code:text-cyan-300 prose-code:bg-slate-900 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-sm">
+                {{ content }}
+            </div>
+
+        </article>
+    </main>
+
+    <!-- フッター -->
+    <footer class="border-t border-slate-900 bg-[#070a12] py-8 text-center text-xs text-slate-600">
+        <div class="max-w-4xl mx-auto px-6">
+            <p>&copy; 2026 WORK & TECH LAB. All rights reserved.</p>
+            <p class="mt-2 text-slate-700">Optimized for Google SEO & High-Performance Workflow.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
