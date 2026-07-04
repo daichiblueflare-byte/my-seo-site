@@ -1,10 +1,103 @@
+---
+layout: null
+---
 <!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-  <meta name="google-site-verification" content="RcmBEcV0qml6t2hyIXJMAmJD91aEBo6QC_2xbR218Do" />
-    </head>
-<body>
-    <h1>My SEO Blog</h1>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WORK & TECH LAB | 生産性を極限まで高めるメディア</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Helvetica Neue', 'Arial', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Meiryo', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #0b0f19; }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0b0f19; }
+        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #334155; }
+    </style>
+</head>
+<body class="text-slate-200 antialiased min-h-screen flex flex-col font-sans bg-[#0b0f19]">
+
+    <header class="border-b border-slate-800/80 bg-[#0b0f19]/85 backdrop-blur sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 md:px-6 h-16 flex items-center justify-between">
+            <a href="/my-seo-site/" class="text-lg font-bold tracking-wider bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent hover:opacity-80 transition">
+                WORK & TECH <span class="text-xs font-normal text-slate-500 ml-1">LAB</span>
+            </a>
+            <div class="flex items-center space-x-4">
+                <span class="text-xs bg-blue-500/10 text-blue-400 border border-blue-500/20 px-2.5 py-1 rounded-full font-medium">AI Automated Network</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-6xl w-full mx-auto px-4 md:px-6 py-8 md:py-12 space-y-12">
+        
+        <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#131b2e] to-[#0f172a] p-8 md:p-12 border border-slate-800/60 shadow-2xl">
+            <div class="relative z-10 max-w-3xl">
+                <span class="text-xs font-bold tracking-widest text-cyan-400 uppercase bg-cyan-500/10 border border-cyan-500/20 px-3 py-1 rounded-full">Automated Architecture Hub</span>
+                <h1 class="text-3xl md:text-5xl font-extrabold text-slate-50 tracking-tight mt-4 leading-tight">
+                    AIとテクノロジーで、<br class="hidden md:block">日々のワークフローを最適化する。
+                </h1>
+                <p class="mt-4 text-slate-400 text-sm md:text-base leading-relaxed max-w-2xl">
+                    WORK & TECH LABは、最新AIツールの実務活用ハック、生産性を爆上げする仕事効率化術、そしてガジェット（キーボード・マウス・モニター環境等）のディープな検証レビューを、24時間完全全自動で配信するテック系インテリジェンス・メディアです。
+                </p>
+            </div>
+            <div class="absolute -right-10 -bottom-10 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl" aria-hidden="true"></div>
+            <div class="absolute right-10 top-10 w-40 h-40 bg-cyan-500/5 rounded-full blur-2xl" aria-hidden="true"></div>
+        </div>
+
+        <section class="space-y-6">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+                <h2 class="text-xs font-bold tracking-wider text-slate-400 uppercase flex items-center gap-2">
+                    <span class="w-1.5 h-3 bg-blue-500 rounded-full"></span> LATEST ARTICLES
+                </h2>
+                <span class="text-[11px] text-slate-500 font-medium bg-slate-900 px-2.5 py-1 rounded-md border border-slate-800">2.5 Pro 配信エンジン稼働中</span>
+            </div>
+
+            <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                {% for post in site.posts %}
+                <a href="{{ post.url | relative_url }}" class="group flex flex-col justify-between bg-[#131b2e] border border-slate-800/40 rounded-2xl p-6 hover:border-blue-500/40 hover:shadow-xl hover:shadow-blue-500/5 transition-all duration-300 shadow-md shadow-black/20">
+                    <div>
+                        <div class="text-[11px] text-slate-500 font-semibold tracking-wider uppercase mb-2">
+                            📅 {{ post.date | date: "%Y/%m/%d" }}
+                        </div>
+                        <h3 class="text-base md:text-lg font-bold text-slate-100 group-hover:text-blue-400 transition-colors duration-300 leading-snug line-clamp-2 mb-3">
+                            {{ post.title }}
+                        </h3>
+                        <p class="text-xs md:text-sm text-slate-400 leading-relaxed line-clamp-3">
+                            {{ post.excerpt | strip_html | strip_newlines | truncate: 90 }}
+                        </p>
+                    </div>
+                    <div class="text-xs font-semibold text-blue-400 flex items-center gap-1 mt-6 group-hover:text-cyan-400 transition-colors duration-300">
+                        記事を読む <span class="text-sm group-hover:translate-x-1 transition-transform duration-300">→</span>
+                    </div>
+                </a>
+                {% empty %}
+                <div class="col-span-full text-center py-16 bg-[#131b2e]/20 border border-dashed border-slate-800/80 rounded-2xl text-slate-500 text-sm">
+                    ☕ 現在、AIエヴァンジェリストが次なるトレンド記事を執筆中です。しばらくお待ちください。
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="border-t border-slate-900 bg-[#070a12] py-8 text-center text-xs text-slate-600 mt-auto">
+        <div class="max-w-6xl mx-auto px-6">
+            <p>&copy; 2026 WORK & TECH LAB. All rights reserved.</p>
+            <p class="mt-2 text-slate-700 font-mono text-[10px]">Optimized for Multi-Device Responsive UI & Search Engine Indexing.</p>
+        </div>
+    </footer>
+
 </body>
 </html>
