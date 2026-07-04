@@ -1,0 +1,44 @@
+name: AI Refactor Auto-Validation CI
+
+on:
+  push:
+    branches:
+      - 'feature/ai-refactor' # AIがこのブランチにコミットした瞬間に起動
+
+jobs:
+  validate-and-merge:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: actions/setup-ruby@v1
+        with:
+          ruby-version: '3.1'
+
+      - name: Install Dependencies
+        run: |
+          gem install jekyll bundler
+          bundle install || true
+
+      # 🔥 運命のテスト：Jekyllビルドを実行してHTML/Liquid構文にエラーがないか検証
+      - name: Test Jekyll Build
+        run: bundle exec jekyll build
+
+      # 🔥 テスト合格時のみ：本番環境（main）へ全自動でマージを執行
+      - name: Auto-Merge to Main
+        if: success()
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --global user.name "AI-Architect-Bot"
+          git config --global user.email "ai-bot@blueflare.moe"
+          git fetch origin main
+          git checkout main
+          git merge origin/feature/ai-refactor --no-edit
+          git push origin main
